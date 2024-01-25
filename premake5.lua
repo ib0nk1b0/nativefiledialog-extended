@@ -1,38 +1,37 @@
 project "NFD_Extended"
-	kind "StaticLib"
-	language "C++"
-	cppdialect "C++11"
-	staticruntime "off"
+    kind "StaticLib"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "off"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files
-	{
-		"src/**.h",
-		"src/**.cpp",
-		"src/include/**.h"
-		"src/include/**.hpp"
-	}
+    files
+    {
+        "src/nfd_win.cpp",
+        "src/include/nfd.h",
+        "src/include/nfd.hpp"
+    }
 
-	includedirs
-	{
-		"include",
-		"src"
-	}
+    includedirs
+    {
+        "include",
+        "src"
+    }
 
-	filter "system:windows"
-		systemversion "latest"
+    filter "system:windows"
+    systemversion "latest"
 
-	filter "configurations:Debug"
-		runtime "Debug"
-		symbols "on"
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "on"
 
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
+    filter "configurations:Release"
+        runtime "Release"
+        optimize "on"
 
-	filter "configurations:Dist"
-		runtime "Release"
-		optimize "on"
-    symbols "off"
+    filter "configurations:Dist"
+        runtime "Release"
+        optimize "on"
+        symbols "off"
